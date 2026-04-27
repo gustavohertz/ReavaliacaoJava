@@ -1,4 +1,4 @@
-package org.example;
+package br.com.letheia.ufology.FuncionalidadesCap1;
 
 import java.util.Scanner;
 

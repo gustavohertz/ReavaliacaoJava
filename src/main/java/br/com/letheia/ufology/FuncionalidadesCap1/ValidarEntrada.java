@@ -1,4 +1,4 @@
-package org.example;
+package br.com.letheia.ufology.FuncionalidadesCap1;
 
 public class ValidarEntrada {
     public static void validarEntrada(int hora,int visibilidade){

@@ -1,6 +1,6 @@
-package org.example;
+package br.com.letheia.ufology.FuncionalidadesCap1;
 
-import static org.example.calcularIndiceCredibilidade.*;
+import static br.com.letheia.ufology.FuncionalidadesCap1.calcularIndiceCredibilidade.*;
 
 public class avaliarCredibildade {
     avaliarCredibildade(){

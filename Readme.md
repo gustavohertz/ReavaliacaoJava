@@ -104,3 +104,59 @@ Foi realizado um processo de depuração com as seguintes etapas:
 Durante a depuração, foi possível acompanhar a execução do programa passo a passo, verificando o fluxo de execução e o comportamento das variáveis em tempo real. Além disso, o uso do *Step Over* permitiu entender como cada instrução é processada pela JVM.
 
 ---
+## Fundamentos de Orientação a Objetos
+
+O Java é uma linguagem baseada no paradigma de Orientação a Objetos (OO). Para compreender a estrutura do código, é essencial dominar quatro conceitos fundamentais:
+
+Classe (Class): É o "molde" ou a planta-baixa (blueprint). Ela define a estrutura, as características e os comportamentos que uma entidade terá no sistema, mas não é a entidade em si.
+
+Objeto (Object): É a instância concreta criada a partir de uma classe. Se a classe é o projeto de uma estação espacial, o objeto é a estação já construída e ocupando espaço na memória.
+
+Campos (Fields / Atributos): São as variáveis declaradas dentro de uma classe. Eles armazenam o "estado" ou as características do objeto (ex.: nome da estação, nível de energia, status de conexão).
+
+Métodos (Methods): São as funções definidas dentro da classe. Eles representam os "comportamentos" ou as ações que o objeto é capaz de executar (ex.: iniciar sistemas, transmitir mensagens).
+---
+## 2.2 Diagrama de Entidades e Tipos de Dados
+
+Abaixo está o diagrama de classes em formato ASCII, demonstrando a estrutura e as dependências conceituais do sistema de monitoramento (Estação Letheia):
+
+```text
+  +-------------------+          +-------------------+
+  |    Observador     |          |    Coordenada     |
+  +-------------------+          +-------------------+
+  | - id: int         |          | - latitude: double|
+  | - nome: String    |          | - longitude:double|
+  | - nascimento:     |          +-------------------+
+  |   LocalDateTime   |                   ^
+  | - documento: Long |                   |
+  | - email: String   |                   | (Localização)
+  +-------------------+                   |
+            ^                             |
+            | (Relata)                    |
+            |                   +-------------------+
+            +-------------------|   Avistamento     |
+                                +-------------------+
+                                | - id: BigInteger  |
+                                | - dataHora:       |
+                                |   LocalTime       |
+                                | - descricao:String|
+                                | - testemunhas: int|
+                                +-------------------+
+```
+
+### Justificativas de Decisões Técnicas
+Durante o desenvolvimento, optou-se por utilizar classes específicas da API do Java para garantir precisão, segurança e escalabilidade aos dados do sistema:
+
+java.time.LocalTime e java.time.LocalDateTime (API de Datas do Java 8+):
+
+Por que usamos: Diferente da antiga classe Date, as classes do pacote java.time são imutáveis e thread-safe (seguras para uso em sistemas paralelos).
+
+Onde usamos: * O LocalDateTime foi aplicado na data de nascimento do Observador, pois guarda a data e o horário exato sem as complexidades de fuso horário.
+
+O LocalTime foi utilizado no Avistamento (dataHora) para registrar a hora, minuto e segundo exatos em que o fenômeno foi detectado no céu.
+
+java.math.BigInteger:
+
+Por que usamos: Tipos primitivos como int e long possuem limites máximos (o long suporta até ~9 quintilhões). O BigInteger aloca a memória dinamicamente, permitindo armazenar números inteiros de tamanho infinito (limitados apenas pela memória RAM da máquina). Ele também é imutável, o que aumenta a segurança da informação.
+
+Onde usamos: Aplicado como identificador (id) da classe Avistamento. Como a Estação Letheia pode mapear registros em escala universal ou receber fluxos massivos de dados espaciais ao longo de milênios, o BigInteger garante que o sistema nunca sofrerá de overflow (estouro de limite) na geração de novos IDs.
