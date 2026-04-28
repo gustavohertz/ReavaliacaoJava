@@ -4,13 +4,13 @@ import java.time.LocalTime;
 
 public enum Avistamento {
     ;
-    BigInteger id;
-    LocalTime dataHora;
-    String coordenada;
-    String descricao;
-    int visibilidade;
-    int testemunhas;
-    String observador;
+    private BigInteger id;
+    private LocalTime dataHora;
+    private String coordenada;
+    private String descricao;
+    private int visibilidade;
+    private int testemunhas;
+    private String observador;
 
     Avistamento(BigInteger id, LocalTime dataHora, String coordenada, String descricao,
                 int visibilidade, int testemunhas, String observador) {

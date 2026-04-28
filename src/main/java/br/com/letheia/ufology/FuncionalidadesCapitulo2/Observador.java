@@ -3,11 +3,11 @@ package br.com.letheia.ufology.FuncionalidadesCapitulo2;
 import java.time.LocalDateTime;
 public class Observador {;
 
-    int id;
-    String nome;
-    LocalDateTime nascimento;
-    Long documento;
-    String email;
+    private int id;
+    private String nome;
+    private LocalDateTime nascimento;
+    private Long documento;
+    private String email;
 
     Observador(int id, String nome, LocalDateTime nascimento, Long documento, String email){
 
