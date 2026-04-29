@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 public class Observador {;
 
     private int id;
-    private String nome;
+    private final String nome;
     private LocalDateTime nascimento;
     private Long documento;
     private String email;
 
-    Observador(int id, String nome, LocalDateTime nascimento, Long documento, String email){
+    public Observador(int id, String nome, LocalDateTime nascimento, Long documento, String email){
 
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do observador não pode ser vazio ou nulo.");
@@ -32,5 +32,9 @@ public class Observador {;
         this.nascimento = nascimento;
         this.documento = documento;
         this.email = email;
+    }
+
+    public String getNome() {
+        return nome;
     }
 }
